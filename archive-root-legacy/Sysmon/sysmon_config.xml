@@ -1,0 +1,18 @@
+<Sysmon schemaversion="4.82">
+<EventFiltering>
+
+<ProcessCreate onmatch="include">
+</ProcessCreate>
+
+<FileCreate onmatch="include">
+<TargetFilename condition="contains">attack_files</TargetFilename>
+</FileCreate>
+
+<NetworkConnect onmatch="include">
+</NetworkConnect>
+
+<RegistryEvent onmatch="include">
+</RegistryEvent>
+
+</EventFiltering>
+</Sysmon>

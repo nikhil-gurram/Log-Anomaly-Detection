@@ -1,0 +1,28 @@
+apiVersion: 1
+
+datasources:
+  - name: Elasticsearch-SOC
+    uid: Elasticsearch-SOC
+    type: elasticsearch
+    access: proxy
+    url: http://localhost:9200
+    isDefault: true
+    jsonData:
+      index: winlogbeat*
+      timeField: "@timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+
+  - name: Elasticsearch-ML
+    uid: Elasticsearch-ML
+    type: elasticsearch
+    access: proxy
+    url: http://localhost:9200
+    isDefault: false
+    jsonData:
+      index: ml-anomalies-*
+      timeField: "timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false

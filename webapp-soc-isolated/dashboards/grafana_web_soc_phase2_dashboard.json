@@ -1,0 +1,547 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(255, 153, 0, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "Elasticsearch-WebML"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 70,
+            "barAlignment": 0
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "alias": "Critical",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "prediction:anomaly AND severity:critical",
+          "refId": "A",
+          "timeField": "timestamp"
+        },
+        {
+          "alias": "High",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "4",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "3",
+              "type": "count"
+            }
+          ],
+          "query": "prediction:anomaly AND severity:high",
+          "refId": "B",
+          "timeField": "timestamp"
+        },
+        {
+          "alias": "Medium",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "6",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "5",
+              "type": "count"
+            }
+          ],
+          "query": "prediction:anomaly AND severity:medium",
+          "refId": "C",
+          "timeField": "timestamp"
+        },
+        {
+          "alias": "Low",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "8",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "7",
+              "type": "count"
+            }
+          ],
+          "query": "prediction:anomaly AND severity:low",
+          "refId": "D",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Threat Severity Timeline",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "Elasticsearch-WebML"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 40
+              },
+              {
+                "color": "red",
+                "value": 70
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "alias": "Average Risk Score",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "risk_score",
+              "id": "1",
+              "type": "avg"
+            }
+          ],
+          "query": "prediction:anomaly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Risk Score Trend",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "Elasticsearch-WebApp"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 55,
+            "barAlignment": 0
+          },
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 8
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom",
+          "showLegend": false
+        }
+      },
+      "targets": [
+        {
+          "alias": "Failed Login Attempts",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event_type:auth_failed",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Authentication Attack Wave",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "Elasticsearch-WebApp"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 65,
+            "barAlignment": 0
+          },
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "alias": "Endpoint Recon",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "event_type:endpoint_scan",
+          "refId": "A",
+          "timeField": "timestamp"
+        },
+        {
+          "alias": "Admin Probe",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "4",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "3",
+              "type": "count"
+            }
+          ],
+          "query": "event_type:privilege_violation",
+          "refId": "B",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Recon and Privilege Abuse",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "Elasticsearch-WebApp"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 250
+              },
+              {
+                "color": "red",
+                "value": 700
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 8
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "displayMode": "hidden",
+          "placement": "bottom",
+          "showLegend": false
+        }
+      },
+      "targets": [
+        {
+          "alias": "Latency p95",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "field": "latency_ms",
+              "id": "1",
+              "settings": {
+                "percents": [95]
+              },
+              "type": "percentiles"
+            }
+          ],
+          "query": "source:webapp",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Latency Stress p95",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "elasticsearch",
+        "uid": "Elasticsearch-WebML"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "min": 0,
+          "max": 30,
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 85,
+            "barAlignment": 0
+          },
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#2ed573",
+                "value": null
+              },
+              {
+                "color": "#ffa502",
+                "value": 3
+              },
+              {
+                "color": "#ff4757",
+                "value": 8
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 15
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true
+        }
+      },
+      "targets": [
+        {
+          "alias": "Phase 2 ML Alerts",
+          "bucketAggs": [
+            {
+              "field": "timestamp",
+              "id": "2",
+              "settings": {
+                "interval": "auto",
+                "min_doc_count": 1
+              },
+              "type": "date_histogram"
+            }
+          ],
+          "metrics": [
+            {
+              "id": "1",
+              "type": "count"
+            }
+          ],
+          "query": "prediction:anomaly",
+          "refId": "A",
+          "timeField": "timestamp"
+        }
+      ],
+      "title": "Phase 2 ML Alert Stream",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": [
+    "web-soc",
+    "phase2",
+    "threat-intel"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-90d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Web SOC Phase 2 - Threat Intelligence View",
+  "uid": "webapp-soc-phase2-view",
+  "version": 1,
+  "weekStart": ""
+}

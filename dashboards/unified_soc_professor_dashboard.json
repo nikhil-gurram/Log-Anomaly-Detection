@@ -1,0 +1,181 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(255, 176, 32, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {"h": 1, "w": 24, "x": 0, "y": 0},
+      "id": 100,
+      "panels": [],
+      "title": "Unified SOC Mission Control - Web, Windows, Network",
+      "type": "row"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Web-ML"},
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}, {"color": "orange", "value": 5}, {"color": "red", "value": 20}]}
+        },
+        "overrides": []
+      },
+      "gridPos": {"h": 4, "w": 4, "x": 0, "y": 1},
+      "id": 1,
+      "options": {"colorMode": "background", "graphMode": "area", "justifyMode": "center", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+      "targets": [{"metrics": [{"id": "1", "type": "count"}], "query": "prediction:anomaly", "refId": "A", "timeField": "timestamp"}],
+      "title": "Web ML Alerts",
+      "type": "stat"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Windows-ML"},
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}, {"color": "orange", "value": 10}, {"color": "red", "value": 50}]}
+        },
+        "overrides": []
+      },
+      "gridPos": {"h": 4, "w": 4, "x": 4, "y": 1},
+      "id": 2,
+      "options": {"colorMode": "background", "graphMode": "area", "justifyMode": "center", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+      "targets": [{"metrics": [{"id": "1", "type": "count"}], "query": "prediction:anomaly", "refId": "A", "timeField": "timestamp"}],
+      "title": "Windows ML Alerts",
+      "type": "stat"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Network-ML"},
+      "fieldConfig": {
+        "defaults": {
+          "color": {"mode": "thresholds"},
+          "thresholds": {"mode": "absolute", "steps": [{"color": "green", "value": null}, {"color": "orange", "value": 10}, {"color": "red", "value": 50}]}
+        },
+        "overrides": []
+      },
+      "gridPos": {"h": 4, "w": 4, "x": 8, "y": 1},
+      "id": 3,
+      "options": {"colorMode": "background", "graphMode": "area", "justifyMode": "center", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+      "targets": [{"metrics": [{"id": "1", "type": "count"}], "query": "prediction:anomaly", "refId": "A", "timeField": "timestamp"}],
+      "title": "Network ML Alerts",
+      "type": "stat"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Web-Raw"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}}, "overrides": []},
+      "gridPos": {"h": 4, "w": 4, "x": 12, "y": 1},
+      "id": 4,
+      "options": {"colorMode": "value", "graphMode": "area", "justifyMode": "center", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+      "targets": [{"metrics": [{"id": "1", "type": "count"}], "query": "*", "refId": "A", "timeField": "timestamp"}],
+      "title": "Web Events",
+      "type": "stat"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Windows-Raw"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}}, "overrides": []},
+      "gridPos": {"h": 4, "w": 4, "x": 16, "y": 1},
+      "id": 5,
+      "options": {"colorMode": "value", "graphMode": "area", "justifyMode": "center", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+      "targets": [{"metrics": [{"id": "1", "type": "count"}], "query": "*", "refId": "A", "timeField": "@timestamp"}],
+      "title": "Windows Events",
+      "type": "stat"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Network-Raw"},
+      "fieldConfig": {"defaults": {"color": {"mode": "palette-classic"}}, "overrides": []},
+      "gridPos": {"h": 4, "w": 4, "x": 20, "y": 1},
+      "id": 6,
+      "options": {"colorMode": "value", "graphMode": "area", "justifyMode": "center", "orientation": "auto", "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}, "textMode": "auto"},
+      "targets": [{"metrics": [{"id": "1", "type": "count"}], "query": "*", "refId": "A", "timeField": "timestamp"}],
+      "title": "Network Flows",
+      "type": "stat"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Web-ML"},
+      "fieldConfig": {"defaults": {"custom": {"drawStyle": "bars", "fillOpacity": 75, "lineInterpolation": "smooth"}, "color": {"mode": "continuous-GrYlRd"}}, "overrides": []},
+      "gridPos": {"h": 8, "w": 8, "x": 0, "y": 5},
+      "id": 7,
+      "options": {"legend": {"displayMode": "table", "placement": "bottom", "showLegend": true}, "tooltip": {"mode": "multi", "sort": "desc"}},
+      "targets": [{"alias": "Web anomaly wave", "bucketAggs": [{"field": "timestamp", "id": "2", "settings": {"interval": "auto", "min_doc_count": 1}, "type": "date_histogram"}], "metrics": [{"id": "1", "type": "count"}], "query": "prediction:anomaly", "refId": "A", "timeField": "timestamp"}],
+      "title": "Web Attack Wave",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Windows-ML"},
+      "fieldConfig": {"defaults": {"custom": {"drawStyle": "bars", "fillOpacity": 75, "lineInterpolation": "smooth"}, "color": {"mode": "continuous-GrYlRd"}}, "overrides": []},
+      "gridPos": {"h": 8, "w": 8, "x": 8, "y": 5},
+      "id": 8,
+      "options": {"legend": {"displayMode": "table", "placement": "bottom", "showLegend": true}, "tooltip": {"mode": "multi", "sort": "desc"}},
+      "targets": [{"alias": "Windows anomaly wave", "bucketAggs": [{"field": "timestamp", "id": "2", "settings": {"interval": "auto", "min_doc_count": 1}, "type": "date_histogram"}], "metrics": [{"id": "1", "type": "count"}], "query": "prediction:anomaly", "refId": "A", "timeField": "timestamp"}],
+      "title": "Windows Host Anomaly Wave",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Network-ML"},
+      "fieldConfig": {"defaults": {"custom": {"drawStyle": "bars", "fillOpacity": 75, "lineInterpolation": "smooth"}, "color": {"mode": "continuous-GrYlRd"}}, "overrides": []},
+      "gridPos": {"h": 8, "w": 8, "x": 16, "y": 5},
+      "id": 9,
+      "options": {"legend": {"displayMode": "table", "placement": "bottom", "showLegend": true}, "tooltip": {"mode": "multi", "sort": "desc"}},
+      "targets": [{"alias": "Network anomaly wave", "bucketAggs": [{"field": "timestamp", "id": "2", "settings": {"interval": "auto", "min_doc_count": 1}, "type": "date_histogram"}], "metrics": [{"id": "1", "type": "count"}], "query": "prediction:anomaly", "refId": "A", "timeField": "timestamp"}],
+      "title": "Network Threat Wave",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Web-Raw"},
+      "gridPos": {"h": 8, "w": 8, "x": 0, "y": 13},
+      "id": 10,
+      "options": {"legend": {"displayMode": "table", "placement": "right", "showLegend": true}},
+      "targets": [{"alias": "HTTP errors", "bucketAggs": [{"field": "timestamp", "id": "2", "settings": {"interval": "auto", "min_doc_count": 1}, "type": "date_histogram"}], "metrics": [{"id": "1", "type": "count"}], "query": "status_code:[400 TO 599]", "refId": "A", "timeField": "timestamp"}],
+      "title": "HTTP Error Burst",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Network-ML"},
+      "gridPos": {"h": 8, "w": 8, "x": 8, "y": 13},
+      "id": 11,
+      "options": {"legend": {"displayMode": "table", "placement": "right", "showLegend": true}},
+      "targets": [{"alias": "Critical/high network threats", "bucketAggs": [{"field": "timestamp", "id": "2", "settings": {"interval": "auto", "min_doc_count": 1}, "type": "date_histogram"}], "metrics": [{"id": "1", "type": "count"}], "query": "severity:(critical OR high)", "refId": "A", "timeField": "timestamp"}],
+      "title": "Critical Network Threat Pulse",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {"type": "elasticsearch", "uid": "SOC-Windows-Raw"},
+      "gridPos": {"h": 8, "w": 8, "x": 16, "y": 13},
+      "id": 12,
+      "options": {"legend": {"displayMode": "table", "placement": "right", "showLegend": true}},
+      "targets": [{"alias": "Windows telemetry", "bucketAggs": [{"field": "@timestamp", "id": "2", "settings": {"interval": "auto", "min_doc_count": 1}, "type": "date_histogram"}], "metrics": [{"id": "1", "type": "count"}], "query": "*", "refId": "A", "timeField": "@timestamp"}],
+      "title": "Windows Telemetry Timeline",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["btech-final", "unified-soc", "threat-hunting", "ml-anomaly-detection"],
+  "templating": {"list": []},
+  "time": {"from": "now-90d", "to": "now"},
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Unified SOC Professor Demo - Attack, ML and Evidence Command Center",
+  "uid": "unified-soc-professor-demo",
+  "version": 1,
+  "weekStart": ""
+}

@@ -1,0 +1,8 @@
+TimeCreated,EventID,Message
+2026-03-18 10:00:05+00:00,3,Network connection detected to 10.0.0.5:443
+2026-03-18 10:00:07+00:00,11,File Create: C:\\temp\\attack_files\\attack_file_001.txt
+2026-03-18 10:00:08+00:00,1,Process Create: cmd.exe /c tasklist
+2026-03-18 10:00:11+00:00,13,Registry Event: HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run
+2026-03-18 10:01:12+00:00,1,Process Create: powershell.exe Get-Service
+2026-03-18 10:01:15+00:00,11,File Create: C:\\temp\\attack_files\\attack_file_003.txt
+2026-03-18 10:01:16+00:00,11,File Create: C:\\temp\\attack_files\\attack_file_004.txt

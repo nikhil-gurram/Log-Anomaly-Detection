@@ -1,0 +1,131 @@
+apiVersion: 1
+
+datasources:
+  - name: SOC-Windows-Raw
+    uid: SOC-Windows-Raw
+    type: elasticsearch
+    access: proxy
+    url: ${ELASTICSEARCH_URL}
+    basicAuth: true
+    basicAuthUser: ${ELASTIC_USER}
+    jsonData:
+      index: winlogbeat-fallback-*
+      timeField: "@timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+    secureJsonData:
+      basicAuthPassword: ${ELASTIC_PASSWORD}
+
+  - name: SOC-Windows-ML
+    uid: SOC-Windows-ML
+    type: elasticsearch
+    access: proxy
+    url: ${ELASTICSEARCH_URL}
+    basicAuth: true
+    basicAuthUser: ${ELASTIC_USER}
+    jsonData:
+      index: ml-anomalies-*
+      timeField: "timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+    secureJsonData:
+      basicAuthPassword: ${ELASTIC_PASSWORD}
+
+  - name: SOC-Web-Raw
+    uid: SOC-Web-Raw
+    type: elasticsearch
+    access: proxy
+    url: ${ELASTICSEARCH_URL}
+    basicAuth: true
+    basicAuthUser: ${ELASTIC_USER}
+    jsonData:
+      index: webapp-logs-*
+      timeField: "timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+    secureJsonData:
+      basicAuthPassword: ${ELASTIC_PASSWORD}
+
+  - name: SOC-Web-ML
+    uid: SOC-Web-ML
+    type: elasticsearch
+    access: proxy
+    url: ${ELASTICSEARCH_URL}
+    basicAuth: true
+    basicAuthUser: ${ELASTIC_USER}
+    jsonData:
+      index: web-ml-anomalies-*
+      timeField: "timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+    secureJsonData:
+      basicAuthPassword: ${ELASTIC_PASSWORD}
+
+  # Compatibility aliases for dashboards that still reference the older web UI datasource UIDs.
+  - name: Elasticsearch-WebApp
+    uid: Elasticsearch-WebApp
+    type: elasticsearch
+    access: proxy
+    url: ${ELASTICSEARCH_URL}
+    basicAuth: true
+    basicAuthUser: ${ELASTIC_USER}
+    jsonData:
+      index: webapp-logs-*
+      timeField: "timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+    secureJsonData:
+      basicAuthPassword: ${ELASTIC_PASSWORD}
+
+  - name: Elasticsearch-WebML
+    uid: Elasticsearch-WebML
+    type: elasticsearch
+    access: proxy
+    url: ${ELASTICSEARCH_URL}
+    basicAuth: true
+    basicAuthUser: ${ELASTIC_USER}
+    jsonData:
+      index: web-ml-anomalies-*
+      timeField: "timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+    secureJsonData:
+      basicAuthPassword: ${ELASTIC_PASSWORD}
+
+  - name: SOC-Network-Raw
+    uid: SOC-Network-Raw
+    type: elasticsearch
+    access: proxy
+    url: ${ELASTICSEARCH_URL}
+    basicAuth: true
+    basicAuthUser: ${ELASTIC_USER}
+    jsonData:
+      index: network-logs-*
+      timeField: "timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+    secureJsonData:
+      basicAuthPassword: ${ELASTIC_PASSWORD}
+
+  - name: SOC-Network-ML
+    uid: SOC-Network-ML
+    type: elasticsearch
+    access: proxy
+    url: ${ELASTICSEARCH_URL}
+    basicAuth: true
+    basicAuthUser: ${ELASTIC_USER}
+    jsonData:
+      index: network-ml-anomalies-*
+      timeField: "timestamp"
+      interval: "1m"
+      esVersion: 8.0.0
+      includeFrozen: false
+    secureJsonData:
+      basicAuthPassword: ${ELASTIC_PASSWORD}

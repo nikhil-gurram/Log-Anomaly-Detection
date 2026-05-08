@@ -1,0 +1,32 @@
+winlogbeat.event_logs:
+  - name: Security
+    ignore_older: 72h
+  - name: Microsoft-Windows-Sysmon/Operational
+    ignore_older: 72h
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_fields:
+      target: project
+      fields:
+        name: windows-log-anomaly-detection
+        team_mode: blue
+
+setup.ilm.enabled: true
+setup.template.enabled: true
+setup.template.name: winlogbeat
+setup.template.pattern: winlogbeat-*
+
+output.elasticsearch:
+  hosts: ["http://localhost:9200"]
+  username: "elastic"
+  password: "changeme"
+
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: C:/ProgramData/winlogbeat/Logs
+  name: winlogbeat
+  keepfiles: 7
+  permissions: 0644
